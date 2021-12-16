@@ -1,11 +1,42 @@
 ---
-title: Markdown Examples
-date: 2021/3/19
-description: View examples of all possible Markdown options.
-tag: web development
-author: You
+title: Nextra 공식문서 따라해보기
+date: 2021/12/16
+description: practice nextjs static generator nextra
+tag: Dev
+author: Aaron
 ---
+import Image from 'next/image'
 
+# Nextra 공식문서 따라해보기
+
+Nextra란, NextJS 를 기반으로 한 static site generator이다.
+
+정적으로 블로그를 빌드하는 github pages나, 다른 스타터팩이 많이 있지만,
+Nextra
+https://nextra.vercel.app/
+
+### 이미지 만드는법
+
+<Image
+  src="/images/photo2.jpg"
+  alt="Photo"
+  width={1125}
+  height={750}
+  priority
+  className="next-image"
+/>
+```
+import Image from 'next/image'
+
+<Image
+  src="/images/photo2.jpg"
+  alt="Photo"
+  width={1125}
+  height={750}
+  priority
+  className="next-image"
+/>
+```
 # Markdown Examples
 
 ## h2 Heading
