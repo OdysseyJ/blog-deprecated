@@ -1,21 +1,60 @@
 ---
-title: Nextra 공식문서 따라해보기
+title: Nextra 공식문서를 참고해 Markdown 연습하기
 date: 2021/12/16
 description: practice nextjs static generator nextra
 tag: Dev
 author: Aaron
 ---
 import Image from 'next/image'
+import Callout from 'nextra-theme-docs/callout'
 
-# Nextra 공식문서 따라해보기
+# Nextra 공식문서를 참고해 Markdown 연습
 
 Nextra란, NextJS 를 기반으로 한 static site generator이다.
 
-정적으로 블로그를 빌드하는 github pages나, 다른 스타터팩이 많이 있지만,
-Nextra
+정적으로 블로그를 빌드하는 github pages나, gatsby같은 솔루션들이 많이 있지만, NextJS를 사용해 왔었기 때문에 익숙하기도 하고, 무엇보다 vercel에서 starter pack을 굉장히 쉽게 제공하기 때문에 손을  많이 거치지 않아도 되서 좋았다.
+
+Gatsby도 리액트 기반의 static generator라서 굉장히 개발자들 사이에서 많이 사용되고 있는데, 마찬가지로 Nextra에서도 React component와 함께 사용이 가능하다.
+
+자세한 내용은 Nextra 홈페이지에서 살펴보자.
+
 https://nextra.vercel.app/
 
-### 이미지 만드는법
+## Markdown With React Components
+
+Nextra는 마크다운과 리액트 컴포넌트를 적절히 섞어서 포스트를 생성할 수 있다.
+
+<Callout emoji="✅">
+  **MDX** (the library), at its core, transforms MDX (the syntax) to JSX.
+  It receives an MDX string and outputs a _JSX string_. It does this by parsing
+  the MDX document to a syntax tree and then generates a JSX document from that tree. 
+</Callout>
+<Callout type="warning" emoji="⚠️">
+  This API will be deprecated soon.
+</Callout>
+<Callout type="error" emoji="️🚫">
+  This is a dangerous feature that can cause everything to explode.
+</Callout>
+
+```jsx
+import Callout from 'nextra-theme-docs/callout'
+
+<Callout emoji="✅">
+  **MDX** (the library), at its core, transforms MDX (the syntax) to JSX.
+  It receives an MDX string and outputs a _JSX string_. It does this by parsing
+  the MDX document to a syntax tree and then generates a JSX document from that tree. 
+</Callout>
+
+<Callout type="warning" emoji="⚠️">
+  This API will be deprecated soon.
+</Callout>
+
+<Callout type="error" emoji="️🚫">
+  This is a dangerous feature that can cause everything to explode.
+</Callout>
+```
+
+## Image
 
 <Image
   src="/images/photo2.jpg"
@@ -25,7 +64,7 @@ https://nextra.vercel.app/
   priority
   className="next-image"
 />
-```
+```jsx
 import Image from 'next/image'
 
 <Image
@@ -37,7 +76,10 @@ import Image from 'next/image'
   className="next-image"
 />
 ```
-# Markdown Examples
+
+## Heading
+
+# h1 Heading
 
 ## h2 Heading
 
@@ -49,6 +91,20 @@ import Image from 'next/image'
 
 ###### h6 Heading
 
+```
+# h1 Heading
+
+## h2 Heading
+
+### h3 Heading
+
+#### h4 Heading
+
+##### h5 Heading
+
+###### h6 Heading
+```
+
 ## Emphasis
 
 **This is bold text**
@@ -57,11 +113,23 @@ _This is italic text_
 
 ~~Strikethrough~~
 
+```
+**This is bold text**
+
+_This is italic text_
+
+~~Strikethrough~~
+```
+
 ## Blockquotes
 
 > Develop. Preview. Ship. – Vercel
 
-## Lists
+```
+> Develop. Preview. Ship. – Vercel
+```
+
+## List
 
 Unordered
 
@@ -69,17 +137,46 @@ Unordered
 - Consectetur adipiscing elit
 - Integer molestie lorem at massa
 
+```
+- Lorem ipsum dolor sit amet
+- Consectetur adipiscing elit
+- Integer molestie lorem at massa
+```
+
 Ordered
 
 1. Lorem ipsum dolor sit amet
 2. Consectetur adipiscing elit
 3. Integer molestie lorem at massa
+```
+1. Lorem ipsum dolor sit amet
+2. Consectetur adipiscing elit
+3. Integer molestie lorem at massa
+```
+
+## Task List
+
+- [x] Write the press release
+- [ ] Update the website
+- [ ] Contact the media
+
+```
+- [x] Write the press release
+- [ ] Update the website
+- [ ] Contact the media
+```
 
 ## Code
 
 Inline `code`
 
 ```
+Inline `code`
+```
+
+Full `code` with ```
+
+```jsx
 export default function Nextra({ Component, pageProps }) {
   return (
     <>
@@ -104,6 +201,18 @@ export default function Nextra({ Component, pageProps }) {
 }
 ```
 
+## Code Highlighting
+```jsx
+console.log('hello, world')
+```
+
+```
+'''jsx
+console.log('hello, world')
+'''
+```
+
+
 ## Tables
 
 | **Option** | **Description**                                                                                                             |
@@ -112,11 +221,25 @@ export default function Nextra({ Component, pageProps }) {
 | Second     | Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. |
 | Third      | Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. |
 
+```
+| **Option** | **Description**                                                                                                             |
+| ---------- | --------------------------------------------------------------------------------------------------------------------------- |
+| First      | Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. |
+| Second     | Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. |
+| Third      | Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. |
+```
+
 ## Links
 
 - [Next.js](https://nextjs.org)
 - [Nextra](https://nextra.vercel.app/)
 - [Vercel](http://vercel.com)
+
+```
+- [Next.js](https://nextjs.org)
+- [Nextra](https://nextra.vercel.app/)
+- [Vercel](http://vercel.com)
+```
 
 ### Footnotes
 
