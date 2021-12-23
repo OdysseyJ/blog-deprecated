@@ -1,12 +1,15 @@
-a, b = map(int, input().split(" "))
+n = int(input())
+nums = list(map(int, input().split(" ")))
 
-def gcd(a, b):
-    if b==0:
-        return a;
-    return gcd(b, a%b)
+def is_decimal(num):
+    if num==1: return False
+    for i in range(2, num):
+        if num%i == 0:
+            return False
+    return True
 
-def lcm(a, b):
-    return int((a*b)/gcd(a, b))
-
-print(gcd(a, b))
-print(lcm(a, b))
+count = 0
+for num in nums:
+    if is_decimal(num):
+        count+=1
+print(count)
