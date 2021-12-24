@@ -1,15 +1,15 @@
-n = int(input())
-nums = list(map(int, input().split(" ")))
+m, n = map(int, input().split(" "))
 
-def is_decimal(num):
-    if num==1: return False
-    for i in range(2, num):
-        if num%i == 0:
-            return False
-    return True
+DECIMAL = 1
+NON_DECIMAL = 0
+dp = [DECIMAL] * (n+1)
+dp[1] = NON_DECIMAL
+for i in range(2, n+1):
+    if dp[i] == DECIMAL:
+        for j in range(i*i, n+1, i):
+            dp[j] = NON_DECIMAL
 
 count = 0
-for num in nums:
-    if is_decimal(num):
-        count+=1
-print(count)
+for num in range(m, n+1):
+    if dp[num] == 1:
+        print(num)
