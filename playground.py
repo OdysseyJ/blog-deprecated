@@ -11,5 +11,5 @@ for i in range(2, n+1):
 
 count = 0
 for num in range(m, n+1):
-    if dp[num] == 1:
+    if dp[num] == DECIMAL:
         print(num)
