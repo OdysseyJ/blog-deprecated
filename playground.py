@@ -1,15 +1,23 @@
-m, n = map(int, input().split(" "))
+MAX = 1000000
 
 DECIMAL = 1
 NON_DECIMAL = 0
-dp = [DECIMAL] * (n+1)
+dp = [DECIMAL] * (MAX+1)
 dp[1] = NON_DECIMAL
-for i in range(2, n+1):
+for i in range(2, MAX+1):
     if dp[i] == DECIMAL:
-        for j in range(i*i, n+1, i):
+        for j in range(i*i, MAX+1, i):
             dp[j] = NON_DECIMAL
 
-count = 0
-for num in range(m, n+1):
-    if dp[num] == DECIMAL:
-        print(num)
+
+while True:
+    n = int(input())
+    if n == 0:
+        break
+    for i in range(3, int(n/2)+1):
+        if dp[i] == DECIMAL and dp[n-i] == DECIMAL:
+            print("{} = {} + {}".format(n, i, n-i))
+            break
+        if i == int(n/2):
+            print("Goldbach's conjecture is wrong")
+            break
