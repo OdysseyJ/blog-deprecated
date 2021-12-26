@@ -3,5 +3,4 @@ module.exports = withNextra({
     images:{
         domains: ['seongwoon-blog.s3.ap-northeast-2.amazonaws.com']
     },
-    basePath: '.'
 })
