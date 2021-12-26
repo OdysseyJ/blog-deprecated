@@ -1,23 +1,10 @@
-MAX = 1000000
+from itertools import combinations
 
-DECIMAL = 1
-NON_DECIMAL = 0
-dp = [DECIMAL] * (MAX+1)
-dp[1] = NON_DECIMAL
-for i in range(2, MAX+1):
-    if dp[i] == DECIMAL:
-        for j in range(i*i, MAX+1, i):
-            dp[j] = NON_DECIMAL
+nums = [int(input()) for _ in range(9)]
 
-
-while True:
-    n = int(input())
-    if n == 0:
+combinate = combinations(nums, 7)
+for c in combinate:
+    if sum(c) == 100:
+        for i in sorted(c):
+            print(i)
         break
-    for i in range(3, int(n/2)+1):
-        if dp[i] == DECIMAL and dp[n-i] == DECIMAL:
-            print("{} = {} + {}".format(n, i, n-i))
-            break
-        if i == int(n/2):
-            print("Goldbach's conjecture is wrong")
-            break
