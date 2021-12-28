@@ -1,9 +1,0 @@
-
-print(abs(3))
-print(abs(-3))
-print(abs(-3.0))
-print(abs)
-
-a = 8+3j
-
-print(abs(a))
