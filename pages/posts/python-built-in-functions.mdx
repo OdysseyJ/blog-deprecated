@@ -97,7 +97,92 @@ print(any((1, 2))) # True
 ```
 
 ### ascii(object)
+인쇄 가능한 표현을 포함하는 문자열을 반환하지만, 비 ASCII문자를 이스케이프 한다.
 
+```
+mystr='''this
+is a new line.'''
+
+print(ascii(mystr)) # 'this\nis a new line'
+
+NormalText = "A string in python."
+SpecialText = "A string in pythØn."
+
+print(ascii(NormalText)) # 'A string in python.'
+print(ascii(SpecialText)) # 'A string in pyth\xd8n.'
+```
+
+ascii() vs print()
+```
+print(ascii('PythØn')) # Pyth\xd8n
+print('Pyth\xd8n') # PythØn
+```
+
+### bin(x)
+정수를 **0b**가 앞에 붙은 이진 문자열로 변환한다. 만약 x가 파이썬 int 객체가 아니라면 __ index __() 메서드를 정의해야 한다.
+```
+bin(3) # '0b11'
+bin(-10) # '-0b1010'
+```
+
+0b가 필요하지 않다면 다음 케이스를 사용합니다.
+```
+format(14, '#b') # '0b1110'
+format(14, 'b') # '1110'
+f'{14:#b}' # '0b1110'
+f'{14:b}' # '1110'
+```
+
+### bool([x])
+x 표준 논리값 검사 절차를 사용하여 boolean (True/False)를 반환한다. x가 거짓이거나 생략되면 False, 그 이외에는 True를 반환한다. bool클래스는 int클래스의 서브 클래스이다.
+```
+print(bool(True)) # True
+print(bool(False)) # False
+print(bool(1)) # True
+print(bool(0)) # False
+print(bool()) # False
+print(bool('abc')) # True
+```
+
+### breakpoint(*args, **kws)
+호출 지점에서 디버거로 진입하게 만든다. sys.breakpointhook()을 호출하고 args와 kws를 그대로 전달한다. 기본적으로 sys.breakpointhook() 은 인자를 기대하지 않고 pdb.set_trace()를 호출한다. 이것은 다른 함수로 대체될 수 있어서, 꼭 pdb를 사용하지 않고 다른 디버거를 사용할 수 있다.
+
+(무슨말인지 느낌이 잘 안 오니, 예제로 보자.)
+
+```
+x = 10
+y = 'Hello'
+z = 'World'
+print(x)
+breakpoint()
+print(y)
+print(z)
+```
+해당 코드를 실행하면, Pdb라는 프로그램이 실행된다.
+
+<Image
+  src='https://seongwoon-blog.s3.ap-northeast-2.amazonaws.com/images/2021-12-28/1.png'
+  alt="Photo"
+  width={1125}
+  height={300}
+  priority
+  className="next-image"
+/>
+
+<Image
+  src='https://seongwoon-blog.s3.ap-northeast-2.amazonaws.com/images/2021-12-28/2.png'
+  alt="Photo"
+  width={1125}
+  height={250}
+  priority
+  className="next-image"
+/>
+
+간단한 사용법은 위와 같다. 더 자세한 내용은 pdb를 따로 포스팅해서 정리해야겠다.
+
+아래의 링크는 필자가 스스로 breakpoint가 어떤건지 이해하려고 본 포스트이다.
+- https://www.journaldev.com/22695/python-breakpoint
+- https://docs.python.org/ko/3.9/library/pdb.html#pdb.set_trace
 
 ### 참고
 - https://docs.python.org/ko/3.10/library/functions.html#abs
