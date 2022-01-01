@@ -1,6 +1,6 @@
 ---
 title: boj-15650 N과M(2) python
-date: 2021/12/31
+date: 2022/1/1
 description: backjoon online judge 15650
 tag: PS
 author: Aaron
@@ -35,4 +35,15 @@ permutation = permutations([str(i) for i in range(1, n+1)], m)
 
 for p in sorted(set(map(lambda x:" ".join(sorted(x)), list(permutation)))):
     print(p)
+```
+2. permutation에서 수열이 오름차순으로 정렬되어야 한다는 것은, 수열에 순서가 상관이 없어야 한다는 말이다. 따라서 combination과 같다.
+```
+from itertools import combinations
+
+n, m = map(int, input().split(" "))
+
+comb = combinations([str(i) for i in range(1, n+1)], m)
+
+for p in list(comb):
+    print(" ".join(p))
 ```

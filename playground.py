@@ -1,8 +1,12 @@
-from itertools import permutations
+from itertools import product
 
 n, m = map(int, input().split(" "))
 
-permutation = permutations([str(i) for i in range(1, n+1)], m)
+a = []
+for _ in range(m):
+    a.append([str(i) for i in range(1, n+1)])
 
-for p in sorted(set(map(lambda x:" ".join(sorted(x)), list(permutation)))):
-    print(p)
+product_ = product(*a)
+
+for p in list(product_):
+    print(" ".join(p))
