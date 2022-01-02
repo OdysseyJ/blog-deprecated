@@ -1,12 +1,15 @@
-from itertools import product
-
 n, m = map(int, input().split(" "))
 
-a = []
-for _ in range(m):
-    a.append([str(i) for i in range(1, n+1)])
+stack = []
 
-product_ = product(*a)
+def dfs(start):
+    if len(stack)==m:
+        print(' '.join(map(str,stack)))
+        return
 
-for p in list(product_):
-    print(" ".join(p))
+    for i in range(start, n+1):
+        stack.append(i)
+        dfs(i)
+        stack.pop()
+
+dfs(1)
