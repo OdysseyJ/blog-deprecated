@@ -1,15 +1,22 @@
-n, m = map(int, input().split(" "))
+count, m = map(int, input().split(" "))
+nums = sorted(map(int, input().split(" ")))
 
 stack = []
+visited = [False] * count
 
-def dfs(start):
-    if len(stack)==m:
-        print(' '.join(map(str,stack)))
+
+def dfs(d):
+    if d == m:
+        print(' '.join(map(str, stack)))
         return
 
-    for i in range(start, n+1):
-        stack.append(i)
-        dfs(i)
-        stack.pop()
+    for i in range(count):
+        if not visited[i]:
+            visited[i] = True
+            stack.append(nums[i])
+            dfs(d+1)
+            stack.pop()
+            visited[i] = False
 
-dfs(1)
+
+dfs(0)
