@@ -1,22 +1,21 @@
-count, m = map(int, input().split(" "))
-nums = sorted(map(int, input().split(" ")))
+import sys
+
+count = int(sys.stdin.readline().strip())
 
 stack = []
-visited = [False] * count
-
-
-def dfs(d, idx):
-    if d == m:
-        print(' '.join(map(str, stack)))
-        return
-
-    for i in range(idx, count):
-        if not visited[i]:
-            visited[i] = True
-            stack.append(nums[i])
-            dfs(d+1, i+1)
-            stack.pop()
-            visited[i] = False
-
-
-dfs(0, 0)
+for i in range(count):
+    command = sys.stdin.readline().strip()
+    if command == "pop":
+        print(stack.pop() if stack else -1)
+        continue
+    if command == "size":
+        print(len(stack))
+        continue
+    if command == "empty":
+        print(1 if not stack else 0)
+        continue
+    if command == "top":
+        print(stack[-1] if stack else -1)
+        continue
+    num = command.split(" ")[1]
+    stack.append(num)
