@@ -1,39 +1,26 @@
-n = int(input())
-nums = [int(input()) for _ in range(n)]
-stack = []
-result = []
-history = []
-visited = [False]*(n+1)
+import sys
 
-before = 1
-for num in nums:
-    if num >= before:
-        while num != before:
-            if not visited[before]:
-                history.append("+")
-                stack.append(before)
-                visited[before] = True
-            before += 1
-        result.append(num)
-        history.append("+")
-        history.append("-")
-        visited[num] = True
-    elif num < before:
-        if stack and stack[-1] == num:
-            result.append(stack.pop())
-            history.append("-")
-        else:
-            break
+string = sys.stdin.readline().strip()
+count = int(sys.stdin.readline().strip())
 
-    if num == n:
-        while stack:
-            result.append(stack.pop())
-            history.append("-")
-        break
-    before = num
+left = [c for c in string]
+right = []
 
-if nums == result:
-    for h in history:
-        print(h)
-else:
-    print("NO")
+for _ in range(count):
+    command = sys.stdin.readline().strip()
+    if command == "L":
+        if left:
+            right.append(left.pop())
+        continue
+    if command == "D":
+        if right:
+            left.append(right.pop())
+        continue
+    if command == "B":
+        if left:
+            left.pop()
+        continue
+    added = command.split(" ")[1]
+    left.append(added)
+
+print("".join(left+list(reversed(right))))
