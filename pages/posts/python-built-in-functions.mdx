@@ -181,10 +181,82 @@ print(z)
 간단한 사용법은 위와 같다. 더 자세한 내용은 pdb를 따로 포스팅해서 정리해야겠다.
 
 아래의 링크는 필자가 스스로 breakpoint가 어떤건지 이해하려고 본 포스트이다.
-- https://www.journaldev.com/22695/python-breakpoint
-- https://docs.python.org/ko/3.9/library/pdb.html#pdb.set_trace
+> https://www.journaldev.com/22695/python-breakpoint
+> https://docs.python.org/ko/3.9/library/pdb.html#pdb.set_trace
+
+### bytearray
+새로운 바이트 배열을 돌려준다. `0<=x<256` 범위에 있는 정수의 가변 시퀀스이다.
+```python
+>>> bytearray([0,1,2])
+bytearray(b'\x00\x01\x02')
+>>> x = bytearray(b'hello')
+>>> x[0] = ord('a')    # ord는 문자의 ASCII 코드 반환
+>>> x
+bytearray(b'aello')
+```
+
+### bytes
+새로운 바이트열 객체를 돌려준다. bytes는 bytearray의 불변 버전이다. `0<=x<256` 범위의 정수의 불변 시퀀스이다.
+```python
+>>> bytes(10)    # 0이 10개 들어있는 바이트 객체
+b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
+>>> bytes([10, 20, 30, 40, 50])    # 리스트로 바이트 객체
+b'\n\x14\x1e(2'
+>>> bytes(b'hello')    # 바이트 객체로 바이트 객체
+b'hello
+```
+
+### callable(object)
+object가 호출 가능하다고 보이면 True, 아니면 False를 반환한다. (True라도 무조건 호출가능하지는 않음. False일때는 확실). __ call __() 메서드 구현 시 호출가능.
+```
+>>> def test():
+...     print("abc")
+...
+>>> callable(test)
+True
+>>> class test2:
+...     pass
+...
+>>> callable(test2)
+True
+>>> test3 = 'abc'
+>>> callable(test3)
+False
+```
+
+### chr(i) (< - > ord(i))
+유니코드 코드 포인트가 i인 문자를 나타내는 문자열을 돌려준다.
+```
+>>> chr(97)
+'a'
+>>> chr(120)
+'x'
+>>> chr(60)
+'<'
+>>> chr(10)
+'\n'
+```
+
+### @classmethod
+데코레이터의 한 형태로, 메서드를 클래스 메서드로 변환해 준다. 3.9부터는 property와 같은 다른 디스크럽터를 래핑할 수 있다고 한다.
+
+인스턴스 메서드 : 인스턴스를 받음 (self)
+
+클래스 메서드 : 클래스를 묵시적인 첫 번째 인자로 받는다.
+
+스태틱 메서드 : 인스턴스와는 독립적으로, 클래스 내에 포함되는 메서드
+
+(세가지 메서드의 차이점 비교글)
+> https://journeytosth.tistory.com/73
+
+```python
+class C:
+    @classmethod
+    def f(cls, arg1, arg2, ...):
+        ...
+```
 
 ### 참고
-- https://docs.python.org/ko/3.10/library/functions.html#abs
+> https://docs.python.org/ko/3.9/library/functions.html#abs
 
 참고한 글을 작성하신 분들께 정말 감사드립니다.
