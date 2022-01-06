@@ -1,33 +1,12 @@
-import sys
+n, k = map(int, input().split(" "))
 
-n = int(input())
-queue = []
+queue = [str(i) for i in range(1, n+1)]
+result = []
 
-for i in range(n):
-    command = sys.stdin.readline().strip()
-    if command == "front":
-        if queue:
-            print(queue[0])
-        else:
-            print(-1)
-        continue
-    if command == "back":
-        if queue:
-            print(queue[-1])
-        else:
-            print(-1)
-        continue
-    if command == "size":
-        print(len(queue))
-        continue
-    if command == "empty":
-        print(0 if queue else 1)
-        continue
-    if command == "pop":
-        if queue:
-            print(queue.pop(0))
-        else:
-            print(-1)
-        continue
-    num = command.split(" ")[1]
-    queue.append(num)
+while queue:
+    for i in range(k-1):
+        queue.append(queue.pop(0))
+    result.append(queue.pop(0))
+
+answer = ", ".join(result)
+print('<{}>'.format(answer))
