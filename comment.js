@@ -5,8 +5,6 @@ import {useEffect} from "react";
 const Comment = () => {
     const router = useRouter()
 
-    console.log(router.pathname)
-    console.log(router.asPath)
     useEffect(()=>{
         const is_commentable = router.pathname.split("/").length >= 3;
         if(is_commentable){
