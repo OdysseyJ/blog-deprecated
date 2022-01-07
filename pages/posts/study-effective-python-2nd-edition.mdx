@@ -1,0 +1,106 @@
+---
+title: 파이썬 코딩의 기술(개정 2판) 정리
+date: 2022/1/7
+description: study and note effective python 2nd edition
+tag: Dev
+author: Aaron
+---
+import Image from 'next/image'
+
+# 파이썬 코딩의 기술(개정 2판) 정리
+
+## 파이썬답게 생각하기
+    ### PEP 8 스타일 가이드를 따르라
+        - 공백
+
+          공백은 보통 IDE를 사용하면 linter들이 워닝이나 에러를 내 주기 때문에 적용하기 어려운 방법은 아니나, 한번쯤은 정리해 두자.
+
+            1. 탭 대신 스페이스 사용하기
+            2. 문법적으로 중요한 들여쓰기에는 4칸 스페이스 사용.
+            3. 라인 길이 79자 이하
+            4. 긴 식을 다음줄에 이어 쓸 경우 일반 들여쓰기보다 4 스페이스 더 들여쓰기
+                ```python
+                introduce = ("hello my name is aaron and i'm working"
+                    "on turing and now i")
+                ```
+            5. 파일 안에서 각 함수와 클래스 사이에는 두 줄을 넣자.
+                ```python
+                class A:
+                    pass
+
+
+                class B:
+                    pass
+                ```
+            6. 클래스 안에서 메서드와 메서드 사이에는 빈 줄을 한 줄 넣자.
+                ```
+                class A:
+
+                    def a():
+                        pass
+
+                    def b():
+                        pass
+                ```
+            7. 딕셔너리에서 키와 콜론 사이에는 공백 없음, 한 줄 안에 키와 값을 같이 넣는 경우에는 콜론 다음에 스페이스바를 하나 넣음.
+                ```
+                d = {'key': 'value'}
+                ```
+            8. 변수 대입에서 = 전후에는 스페이스를 하나씩만 넣음
+                ```
+                a = 'apple'
+                ```
+            9. 타입 표기를 덧붙이는 경우에는 변수 이름과 콜론 사이에는 공백을 넣지 않고, 콜론과 타입 정보 사이에는 스페이스를 넣기.
+                ```
+                def run(p: int){
+                    print("run")
+                }
+                ```
+
+        - 명명 규약
+
+          이름을 어떻게 지을 것인가?
+
+            1. 공개(public) 함수, 변수, 어트리뷰트는 lower_undercase의 snake case를 사용하라.
+            2. 보호돼야(protected) 하는 어트리뷰트는 _leading_underscore로 사용하라.
+            3. 비공개(private) 인스턴스 어트리뷰트는 __leading_underscore로 사용하라.
+            4. 클래스, 예외는 CapitalizedWord처럼 PascalCase를 사용하라.
+            5. 모듈 수준 상수는 ALL_CAPS처럼 대문자 snake case를 사용하라.
+            6. 클래스 인스턴스 메서드는 첫번째 인자로 반드시 self를 사용하라.
+            7. 클래스 메서드는 첫번째 인자로 반드시 cls를 사용하라.
+
+        - 식과 문
+
+          수식을 작성할 때의 규칙
+
+            1. 긍정적 식을 부정하지 말고, 부정을 내부에 넣어라.
+            ```
+            if not a is b -> if a is not b
+            ```
+            2. 빈 컨테이너나 시퀀스의 검사를 len으로 하지 마라. 빈 시퀀스는 암묵적으로 False로 취급된다는 사실을 이용해 아래와 같이 작성하라
+            ```
+            valid_numbers = []
+            if not valid_numbers:
+                ...
+            ```
+            3. 비어있지 않은 컨테이너나 시퀀스의 검사에서도 len을 사용하지 마라.
+            ```
+            valid_numbers = [1, 2, 3]
+            if valid_numbers:
+                # use valid numbers
+            ```
+            4. 한 줄 짜리 if 문이나 for, while, except 복합문을 사용하지 마라. 각 부분을 여러줄에 나누어 작성하라.
+            ```
+            for i in range(5): print(i)
+
+            ->
+
+            for i in range(5):
+                print(i)
+            ```
+            5. 식을 한 줄 안에 다 쓸수 없는 경우, 괄호로 둘러싸고 줄바꿈과 들여쓰기를 추가해서 읽기 쉽게 만들어라.
+            6. 여러 줄에 걸쳐 식을 쓸 때는 줄이 계속된다는 표시를 하는 문자보다는 괄호를 사용하라.
+            ```
+            introduce = ("hello my name is aaron and i'm working"
+                "on turing and now i")
+            ```
