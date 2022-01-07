@@ -260,4 +260,110 @@ import Image from 'next/image'
             print(f'{name}: {count}')
         ```
 
+    ### for, while과 else를 섞어서 사용하지 마라. (루프와 else를 사용하지 마라.)
+        ```
+        # 루프 뒤에 오는 else 블록은 루프가 반복되는 도중에 break을 만나지 않은 경우에만 실행된다.
+        >>> while False:
+        ...     pass
+        ... else:
+        ...     print("This is while else")
+        ...
+        This is while else
+        ```
 
+        ```
+        a = 4
+        b = 9
+
+        for i in range(2, min(a, b) + 1):
+            print("검사 중", i)
+            if a % i == 0 and b % i == 0:
+                print("서로소 아님")
+                break
+        else:
+            print("서로소")
+
+        >>>
+
+        def coprime(a, b):
+            for i in range(2, min(a, b) + 1):
+                print("검사 중", i)
+                if a % i == 0 and b % i == 0:
+                    return False
+            return True
+        assert coprime(4, 9)
+        assert not coprime(3, 6)
+        ```
+
+    ### 대입식을 사용해 반복을 피하라
+        ```
+        fresh_fruit = {
+            '사과': 10,
+            '바나나': 8,
+            '레몬': 5
+        }
+
+        def make_lemonade(count):
+            ...
+
+        def out_of_stock():
+            ...
+
+        count = fresh_fruit.get('레몬', 0)
+        if count:
+            make_lemonade(count)
+        else:
+            out_of_stock()
+
+        >>>
+
+        if count := fresh_fruit.get('레몬', 0):
+            make_lemonade(count)
+        else:
+            out_of_stock()
+        ```
+
+        ```
+        count = fresh_fruit.get('사과', 0)
+        if count >= 4:
+            make_cider(count)
+        else:
+            out_of_stock()
+
+        >>>
+
+        if (count := fresh_fruit.get('사과', 0)) >= 4:
+            make_cider(count)
+        else:
+            out_of_stock()
+        ```
+
+        파이썬에서는 switch문을 사용할 수 없지만, 연산자로 훌륭하게 흉내낼 수 있음
+        ```
+        count = fresh_fruit.get('바나나', 0)
+        if count >= 2:
+            pieces = slice_bananas(count)
+            to_enjoy = make_smoothies(pieces)
+        else:
+            count = fresh_fruit.get('사과', 0)
+            if count >= 4:
+                to_enjoy = make_cider(count)
+            else:
+                count = fresh_fruit.get('레몬', 0)
+                if count:
+                    to_enjoy = make_lemonade(count)
+                else:
+                    to_ejoy = '아무것도 없음'
+
+        >>>
+
+        if (count := fresh_fruit.get('바나나', 0)) >= 2:
+            pieces = slice_bananas(count)
+            to_enjoy = make_smoothies(pieces)
+        elif (count := fresh_fruit.get('사과', 0)) >= 4:
+            to_enjoy = make_cider(count)
+        elif count := fresh_fruit.get('레몬', 0):
+            to_enjoy = make_lemonade(count)
+        else:
+            to_ejoy = '아무것도 없음'
+        ```
