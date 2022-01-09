@@ -342,4 +342,46 @@ visits.add("영국", "런던")
 
 ### __ missing __을 사용해 키에 따라 다른 디폴트 값을 생성하는 방법을 알아두라.
 
+- setdefault는 항상 불리기 때문에, 디폴트 값을 만드는 계산 비용이 높은 곳에서는 사용하기
+  적합하지 않다.
+  ```
+    try:
+        handle = pictures.setdefault(path, open(path, 'a+b'))
+    except OSError:
+        print(f'경로를 열 수 없습니다.')
+        raise
+    else:
+        handle.seek(0)
+        image_data = handle.read()
+  ```
 
+- defaultdict에 전달되는 함수는 인자를 받지 않으므로, 접근에 사용한 키 값에 맞는
+  디폴트값을 생성하는 것은 불가능하다.
+  ```
+    from collections import defaultdict
+    
+    def open_picture(profile_path):
+        return open(profile_path, 'a+b')
+    except OSError:
+        print(f'경로를 열 수 없습니다: {profile_path}')
+        raise
+
+    pictures = defaultdict(open_picture)
+    handle = pictures[path]
+    handle.seek(0)
+  ```
+
+- 디폴트 키를 만들 때 어떤 키를 사용했는지 반드시 알아야 하는 상황이라면 missing을
+  정의한다.
+    ```
+    class Picture(dict):
+        def __missing__(self, key):
+            value = open_picture(key)
+            self[key] = value
+            return value
+
+    pictures = Pictures()
+    handle = pictures[path]
+    handle.seek(0)
+    image_data = handle.read()
+    ```
