@@ -1,17 +1,32 @@
-import collections
+sentence = input()
 
-n, k = map(int, input().split(" "))
+stack = []
+operators = {
+    "+": 1,
+    "-": 1,
+    "(": 0,
+    ")": 0,
+    "*": 2,
+    "/": 2
+}
+result = ""
 
-queue = collections.deque([(n, int(0))])
-visited = [False] * 100001
+for c in sentence:
+    if (priority := operators.get(c)) is not None:
+        if c == "(":
+            pass
+        elif c == ")":
+            while (top := stack.pop()) != "(":
+                result += top
+            continue
+        else:
+            while stack and operators[stack[-1]] >= priority:
+                result += stack.pop()
+        stack.append(c)
+    else:
+        result += c
 
-while queue:
-    pos, step = queue.popleft()
-    if pos == k:
-        print(step)
-        break
+while stack:
+    result += stack.pop()
 
-    for pos in (pos+1, pos-1, pos*2):
-        if 0 <= pos and pos <= 100000 and not visited[pos]:
-            visited[pos] = True
-            queue.append((pos, step+1))
+print(result)
