@@ -21,7 +21,7 @@ https://disqus.com/
 
 3. Start > Install Instructions에 안내된 내용을 진행하면 된다. 아래는 내가 리액트 - NextJs를 통해 적용한 방법이다.
 
-```
+```js
 <div id="disqus_thread"></div>
 <script>
     /**
@@ -45,7 +45,7 @@ https://disqus.com/
 
 그냥 이런 스크립트를 달아주기만 하면 된다고 해서 리액트로 쓸수 있게 컴포넌트 형태로 감쌌다. 아래 코드는 새롭게 제작한 리액트 댓글 컴포넌트다. 이때 해당 컴포넌트를 footer에 붙이려고 했기 때문에, url을 통해서 댓글이 붙어야하는지 확인해줬다.
 
-```
+```js
 import {useRouter} from "next/router";
 import {useEffect} from "react";
 
@@ -73,7 +73,7 @@ export default Comment
 
 해당 Comment 컴포넌트를 footer에 부착해준다.
 
-```javascript
+```js
 import Comment from './comment'
 
 const YEAR = new Date().getFullYear()

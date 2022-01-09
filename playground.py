@@ -1,48 +1,17 @@
 import collections
-import sys
-print("Hello"
-      "world")
 
-deque = collections.deque()
-n = int(sys.stdin.readline().strip())
+n, k = map(int, input().split(" "))
 
-for i in range(n):
-    line = sys.stdin.readline().strip()
+queue = collections.deque([(n, int(0))])
+visited = [False] * 100001
 
-    if line == "pop_front":
-        if deque:
-            print(deque.popleft())
-        else:
-            print(-1)
-        continue
-    if line == "pop_back":
-        if deque:
-            print(deque.pop())
-        else:
-            print(-1)
-        continue
-    if line == "size":
-        print(len(deque))
-        continue
-    if line == "empty":
-        print(0 if deque else 1)
-        continue
-    if line == "front":
-        if deque:
-            print(deque[0])
-        else:
-            print(-1)
-        continue
-    if line == "back":
-        if deque:
-            print(deque[-1])
-        else:
-            print(-1)
-        continue
-    command, num = line.split(" ")
-    if command == "push_front":
-        deque.appendleft(num)
-        continue
-    if command == "push_back":
-        deque.append(num)
-        continue
+while queue:
+    pos, step = queue.popleft()
+    if pos == k:
+        print(step)
+        break
+
+    for pos in (pos+1, pos-1, pos*2):
+        if 0 <= pos and pos <= 100000 and not visited[pos]:
+            visited[pos] = True
+            queue.append((pos, step+1))
