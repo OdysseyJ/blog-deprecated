@@ -2,19 +2,19 @@
 title: Python에서 Factory boy를 사용해 인스턴스 제작
 date: 2022/1/10
 description: factory boy in python
-tag: Dev, Django
+tag: Dev, Python, Django
 author: Aaron
 ---
 import Callout from 'nextra-theme-docs/callout'
 
 # Python에서 Factory boy 를 사용해 인스턴스 제작
 
-## Factory boy가 뭔가요?
+## Factory boy가 뭘까?
 
-- 인스턴스를 쉽게 생성할 수 있도록 도와주는 패키지입니다.
+- 인스턴스를 쉽게 생성할 수 있도록 도와주는 패키지다.
 
 ## 버전
-- factory-boy 2.12.0을 기준으로 작성했습니다.
+- factory-boy 2.12.0을 기준으로 작성되었다.
 ```
 ❯ pip show factory-boy
 Name: factory-boy
@@ -483,8 +483,8 @@ Required-by:
     - simple_generate
     - simple_generate_batch
     - _adjust_kwargs(cls, **kwargs)
-        - late field 튜닝을 가능하게 해 줍니다. 아래의 코드는 lastname이 항상
-          uppercase임을 보장합니다.
+        - late field 튜닝을 가능하게 해 준다. 아래의 코드는 lastname이 항상
+          uppercase임을 보장한다.
             ```
             class UserFactory(factory.Factory):
 
@@ -495,13 +495,13 @@ Required-by:
                 return kwargs
             ```
     - _build, _create
-        - build, create가 일어나기 전에 실행되는 함수입니다.
+        - build, create가 일어나기 전에 실행되는 함수이다.
 
     - reset_sequence(cls, value=None, force=False)
-        - 해당 팩토리가 가진 시퀀스를 초기화해줍니다.
+        - 해당 팩토리가 가진 시퀀스를 초기화해준다.
 
         - 상속받은 자식 클래스에서 호출시 Error를 내는데, 이때 진행하고 싶다면
-          Force=True를 줍니다.
+          Force=True를 주면 된다.
           ```
             >>>InheritedFactory.reset_sequence()
             Traceback (most recent call last):
@@ -568,7 +568,7 @@ Required-by:
 ## Declaration
 
     ### Faker
-        - 자동으로 랜덤한 값을 생성해줍니다.
+        - 자동으로 랜덤한 값을 생성해준다.
             ```
             class UserFactory(factory.Factory):
                 class Meta:
@@ -795,7 +795,7 @@ Required-by:
             ```
 
     ### SelfAttribute
-        - 다른 Attribute를 참조해 Attribute를 생성해야 하는 경우에 사용합니다.
+        - 다른 Attribute를 참조해 Attribute를 생성해야 하는 경우에 사용한다.
             ```
             class UserFactory(factory.Factory):
                 class Meta:
