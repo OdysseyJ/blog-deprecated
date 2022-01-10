@@ -1,19 +1,16 @@
-n = int(input())
-nums = [int(i) for i in input().split(" ")]
+def gcd(a, b):
+    if b==0:
+        return a
+    return gcd(b, a%b)
 
-d = {}
-for num in nums:
-    if d.get(num) is None:
-        d[num] = 1
-    else:
-        d[num] += 1
+n, s = map(int, input().split(" "))
+nums = map(int, input().split(" "))
 
-result = [-1] * n
-stack = []
-
-for i in range(n):
-    while stack and d[nums[stack[-1]]] < d[nums[i]]:
-        result[stack.pop()] = nums[i]
-    stack.append(i)
-
-print(*result)
+if n==1:
+    print(list(nums)[0]-s)
+else:
+    diffs = set([abs(num-s) for num in nums])
+    d = min(diffs)
+    for diff in diffs:
+        d = gcd(d, diff)
+    print(d)
