@@ -303,7 +303,7 @@ Required-by:
     <Callout type="warning" emoji="⚠️">
         Factory boy 1.X버전까지는 create 호출시 Model.objects.create를 직접 호출했지만,
 
-        2.0 이상부터는 Modle(**kwargs)를 호출한다. Django model에 관해서는 DjangoModelFactory 클래스를 사용해야 한다.
+        버전2.0 이상부터는 Modle(**kwargs)를 호출한다. Django model에 관해서는 DjangoModelFactory 클래스를 사용해야 한다.
     </Callout>
 
 - 그냥 팩토리를 사용해서 인스턴스 create 해보기 (X)
@@ -330,7 +330,7 @@ Required-by:
 
     In [4]: User.objects.first()
 
-    # 확실히 모델이 생성되지 않았다. (버전 2.0 이상)
+    # 확실히 모델이 생성되지 않았다. (버전2.0이상)
     ```
 
 - DjangoModelFactory를 사용해서 인스턴스 create 해보기 (O)
@@ -420,14 +420,13 @@ Required-by:
           정의하면 된다.
           ```
             class UserFactory(factory.Factory):
-    class Meta:
-        model = User
-        inline_args = ('login', 'email')
+                class Meta:
+                    model = User
+                    inline_args = ('login', 'email')
 
-    login = 'john'
-    email = factory.LazyAttribute(lambda o: '%s@example.com' % o.login)
-    firstname = "John"
-
+                login = 'john'
+                email = factory.LazyAttribute(lambda o: '%s@example.com' % o.login)
+                firstname = "John"
           ```
           ```
             >>>UserFactory()
@@ -505,14 +504,7 @@ Required-by:
         - 상속받은 자식 클래스에서 호출시 Error를 내는데, 이때 진행하고 싶다면
           Force=True를 주면 된다.
           ```
-            >>>InheritedFactory.reset_sequence()
-            Traceback (most recent call last):
-              File "factory_boy/tests/test_base.py", line 179, in test_reset_sequence_subclass_parent
-                SubTestObjectFactory.reset_sequence()
-              File "factory_boy/factory/base.py", line 250, in reset_sequence
-                "Cannot reset the sequence of a factory subclass. "
-            ValueError: Cannot reset the sequence of a factory subclass. Please call reset_sequence() on the root factory, or call reset_sequence(forward=True).
-
+            >>>InheritedFactory.reset_sequence() # error
             >>>InheritedFactory.reset_sequence(force=True)
           ```
 
@@ -1009,14 +1001,14 @@ Required-by:
 
             >>> france = CountryFactory()
             >>> City.objects.get(capital_of=france)
-            <City: Paris>
+            City: Paris
           ```
 
         - subfactory에도 kwargs를 넘길 수 있다.
             ```
             england = CountryFactory(lang='en', capital_city__name="London")
             City.objects.get(capital_of=england)
-            <City: London>
+            City: London
             ```
 
         - 상위 팩토리 생성 이후에 생성되기는 하지만, build context는 전달되기 때문에
