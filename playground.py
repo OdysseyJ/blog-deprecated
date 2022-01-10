@@ -1,33 +1,19 @@
 n = int(input())
-expression = input()
-values = [int(input()) for _ in range(n)]
+nums = [int(i) for i in input().split(" ")]
+
 d = {}
+for num in nums:
+    if d.get(num) is None:
+        d[num] = 1
+    else:
+        d[num] += 1
 
-for idx, value in enumerate(values):
-    d[chr(ord("A")+idx)] = value
-
+result = [-1] * n
 stack = []
 
-operations = {
-    "+": "+",
-    "-": "-",
-    "*": "*",
-    "/": "/",
-}
+for i in range(n):
+    while stack and d[nums[stack[-1]]] < d[nums[i]]:
+        result[stack.pop()] = nums[i]
+    stack.append(i)
 
-for c in expression:
-    if (op := operations.get(c)) is not None:
-        after = stack.pop()
-        before = stack.pop()
-        if op == "+":
-            stack.append(before+after)
-        elif op == "-":
-            stack.append(before-after)
-        elif op == "*":
-            stack.append(before*after)
-        elif op == "/":
-            stack.append(before/after)
-    else:
-        stack.append(d[c])
-
-print(f'{stack[0]:.2f}')
+print(*result)
