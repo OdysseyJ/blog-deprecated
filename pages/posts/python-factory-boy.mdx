@@ -913,26 +913,25 @@ Required-by:
             ```
 
     ### Maybe
-        - 만약, 특정 다른 어트리뷰트에 따라서 field를 build하는 케이스가 나눠져야
-          할 경우 Maybe를 사용한다.
+        - 만약, 특정 다른 어트리뷰트에 따라서 field를 build하는 케이스가 나눠져야 할 경우 Maybe를 사용한다.
           ```
-        class UserFactory(factory.Factory):
-            class Meta:
-                model = User
+            class UserFactory(factory.Factory):
+                class Meta:
+                    model = User
 
-            is_active = True
-            deactivation_date = factory.Maybe(
-                'is_active',
-                yes_declaration=None,
-                no_declaration=factory.fuzzy.FuzzyDateTime(timezone.now() - datetime.timedelta(days=10)),
-            )
+                is_active = True
+                deactivation_date = factory.Maybe(
+                    'is_active',
+                    yes_declaration=None,
+                    no_declaration=factory.fuzzy.FuzzyDateTime(timezone.now() - datetime.timedelta(days=10)),
+                )
 
-        >>> u = UserFactory(is_active=True)
-        >>> u.deactivation_date
-        None
-        >>> u = UserFactory(is_active=False)
-        >>> u.deactivation_date
-        datetime.datetime(2017, 4, 1, 23, 21, 23, tzinfo=UTC)
+            >>> u = UserFactory(is_active=True)
+            >>> u.deactivation_date
+            None
+            >>> u = UserFactory(is_active=False)
+            >>> u.deactivation_date
+            datetime.datetime(2017, 4, 1, 23, 21, 23, tzinfo=UTC)
           ```
 
     ## Post Generation Hooks
@@ -953,7 +952,6 @@ Required-by:
               생성한다.
 
     ### PostGeneration
-
         - 만약, 아래와 같이 정의했다고 하면,
            ```
             class SomeFactory(factory.Factory):
@@ -964,7 +962,6 @@ Required-by:
                 def post(obj, create, extracted, **kwargs):
                     obj.set_origin(create)
            ```
-
            ```
             SomeFactory(
                 post=1,
@@ -972,9 +969,8 @@ Required-by:
                 post__y=3,
                 post__z__t=42,
             )
+          post는 extracted=1, {'y':3, 'z__t':42}를 kwargs로 받을 것이다. {'post_x':2}는 SomeFactory._meta.model로 전달된다.
            ```
-
-           post는 extracted = 1, {'y': 3, 'z__t': 42}를 kwargs로 받을 것이다. {'post_x': 2}는 SomeFactory._meta.model로 전달된다.
 
     ### RelatedFactory
 
