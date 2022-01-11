@@ -1,16 +1,12 @@
-def gcd(a, b):
-    if b==0:
-        return a
-    return gcd(b, a%b)
+x = int(input())
 
-n, s = map(int, input().split(" "))
-nums = map(int, input().split(" "))
+dp = [0] * 1000001
 
-if n==1:
-    print(list(nums)[0]-s)
-else:
-    diffs = set([abs(num-s) for num in nums])
-    d = min(diffs)
-    for diff in diffs:
-        d = gcd(d, diff)
-    print(d)
+for i in range(2, x+1):
+    dp[i] = dp[i-1]+1
+    if i % 2 == 0:
+        dp[i] = min(dp[i], dp[i//2]+1)
+    if i % 3 == 0:
+        dp[i] = min(dp[i], dp[i//3]+1)
+
+print(dp[x])
