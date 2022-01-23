@@ -1,3 +1,21 @@
+
+---
+title: boj-2225 합분해
+date: 2022/1/23
+description: backjoon online judge 2225
+tag: PS
+author: Aaron
+---
+
+# boj-2225 합분해
+
+https://www.acmicpc.net/problem/2225
+
+### 시간제한 : 1초
+
+## 접근
+1. dp[n][k] = n을 k개의 양의 정수를 가지고 표현하는 경우의 수 (중복 가능)
+```
 n, k = map(int, input().split(" "))
 
 # dp[n][k] = n을 k개의 양의 정수를 가지고 표현하는 경우의 수.
@@ -18,3 +36,4 @@ for i in range(2, n+1):
         dp[i][j] = (dp[i-1][j] + dp[i][j-1])%DIV
 
 print(dp[n][k]%DIV)
+```
