@@ -1,3 +1,17 @@
+---
+title: boj-11054 가장 긴 바이토닉 부분 수열 python
+date: 2022/1/24
+description: backjoon online judge
+tag: PS
+author: Aaron
+---
+
+https://www.acmicpc.net/problem/11054
+
+# boj-11054 가장 긴 바이토닉 부분 수열 python
+
+## 접근
+1. lis(least longest sequence)를 정방향, 역방향으로 구해준 뒤에, 그 (둘의 합)-1(겹치는부분)을 해서 최대값을 구하면 된다.
 n = int(input())
 nums = [int(i) for i in input().split(" ")]
 
@@ -16,3 +30,4 @@ dp_r = lis(n, list(reversed(nums)), dp_r)
 
 result = max([a+b for a, b in zip(dp, list(reversed(dp_r)))])-1
 print(result)
+```
