@@ -1,0 +1,43 @@
+---
+title: SQL - CREATE, INSERT, DELETE
+date: 2022/1/14
+description: raw sql study for writing sql without orm
+tag: Dev, SQL
+author: Aaron
+---
+# SQL - CREATE, INSERT, DELETE
+
+## CREATE
+```
+CREATE TABLE emp03
+(
+    emp_id   NUMBER        NOT NULL,
+    emp_name VARCHAR2(100) NOT NULL,
+    gender   VARCHAR2(100)     NULL,
+    PRIMARY KEY ( emp_id )
+);
+```
+
+## INSERT
+```
+INSERT INTO 테이블명 ( column1, column2, ... )
+VALUES ( 값1, 값2, ... );
+```
+```
+INSERT INTO 테이블명 ( emp_id, emp_name, gender )
+VALUES ( 1, "홍길동", "남성" );
+COMMIT;
+ROLLBACK;
+```
+
+## DELETE
+```
+DELETE FROM 테이블명
+WHERE 조건
+```
+```
+DELETE FROM emp03
+WHERE emp_id = 4;
+COMMIT;
+ROLLBACK;
+```
