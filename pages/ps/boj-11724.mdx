@@ -1,3 +1,18 @@
+---
+title: boj-11724 연결 요소의 개수 python
+date: 2022/1/27
+description: backjoon online judge
+tag: PS
+author: Aaron
+---
+
+# boj-11724 연결 요소의 개수 python
+
+https://www.acmicpc.net/problem/11724
+
+## 접근
+1. 이전에 graph를 통한 bfs/dfs 를 구현하는 문제를 했었기 때문에 굉장히 쉬웠다. 일단 그래프 노드와 간선을 2차원 배열로 모두 만들어 준 뒤에, 각 노드별로 bfs를 돌려서 결과가 있는지만 보면 된다.
+```python
 import sys
 from collections import deque
 
@@ -33,3 +48,4 @@ for i in range(1, n+1):
         result += 1
 
 print(result)
+```
