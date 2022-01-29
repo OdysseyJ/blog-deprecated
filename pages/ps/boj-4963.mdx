@@ -1,3 +1,20 @@
+---
+title: boj-4963 섬의 개수
+date: 2022/1/29
+description: backjoon online judge
+tag: PS
+author: Aaron
+---
+
+# boj-4963 섬의 개수
+
+https://www.acmicpc.net/problem/4963
+
+## 접근
+1. 정사각형의 한 타일을 1개의 노드로 보고, land가 이어져있는 부분을 find_edges 함수를 통해 찾는다. 이때 노드의 순서는 w*y+1로 정했다.
+
+2. 이어져있는 edge를 bfs로 돌면서 연결된 edge들의 총 개수를 찾는다. 이때 bfs를 돌기 전에 미리 "Land" 영역이 아닌 "Sea" 영역에 대해서는 방문 여부를 True로 저장해두어 BFS에서 탐색하는 조건에서 제외시켰다. 
+```python
 import sys
 from collections import deque
 
@@ -57,3 +74,5 @@ while True:
             result += 1
 
     print(result)
+```
+
