@@ -76,3 +76,44 @@ while True:
     print(result)
 ```
 
+다른 사람의 코드 중에서, 간결한 코드를 발견해 따로 확인해봤다.
+1. 해당 맵 자체를 직접 돌면서 visited를 2차원으로 관리하면서 돈다. 이게 더 쉽다.
+```
+import sys
+Input = sys.stdin.readline
+
+dx = [1, -1, 0, 0, 1, -1, 1, -1]
+dy = [1, -1, 1, -1, 0, 0, -1, 1]
+
+def check_area():
+  queue = []
+  count = 0
+  for a in range(h):
+    for b in range(w):
+      if Map[a][b] == 1 and not visited[a][b]:
+        count += 1
+        visited[a][b] = True
+      else:
+        continue
+      queue.append((a, b))
+      while queue:
+        x, y = queue.pop()
+        for i in range(8):
+          nx = dx[i] + x
+          ny = dy[i] + y
+          if ny >= w or ny < 0 or nx >= h or nx < 0:
+            continue
+          if not visited[nx][ny] and Map[nx][ny] == 1:
+            queue.append((nx, ny))
+            visited[nx][ny] = True
+  print(count)                  
+
+
+while True:
+  w, h = map(int, input().split())
+  if w == 0 and h == 0:
+    break
+  Map = [list(map(int, Input().split())) for _ in range(h)]
+  visited = [[False] * w for _ in range(h)]
+  check_area()  
+```
