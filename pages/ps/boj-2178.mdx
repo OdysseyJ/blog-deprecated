@@ -1,3 +1,18 @@
+---
+title: boj-2178 미로 탐색
+date: 2022/1/30
+description: backjoon online judge 2178
+tag: PS
+author: Aaron
+---
+
+# boj-2178 미로 탐색
+
+### 시간제한 : 1초
+
+## 접근
+1. 생각보다 쉬웠다. 미로를 돌면서 그냥 bfs만 해주면 된다. 근데 왜 그래프문젠지 잘 모르겠다.
+```
 import sys
 from collections import deque
 
@@ -32,3 +47,5 @@ while queue:
     if can_move(x, y-1, n, m):
         queue.append((x, y-1, step+1))
         visited[y-1][x] = True
+```
+
