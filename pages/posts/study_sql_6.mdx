@@ -43,3 +43,34 @@ author: Aaron
     ```
 
 ## UNION
+- UNION은 중복을 포함하지 않는 합집합 개념
+    ```
+    SELECT emp_name
+    FROM emp03
+    UNION ALL
+    SELECT emp_name2
+    FROM emp08
+    ORDER BY 1;
+    ```
+
+## INTERSECT
+- 두 집합의 공통 원소만 추출하는 교집합
+    ```
+    SELECT emp_name
+    FROM emp03
+    INTERSECT
+    SELECT emp_name2
+    FROM emp03
+    ORDER BY 1;
+    ```
+
+## MINUS
+- 두 쿼리 결과의 차집합
+    ```
+    SELECT emp_name
+    FROM emp03
+    MINUS
+    SELECT emp_name2
+    FROM emp08
+    ORDER BY 1
+    ```
