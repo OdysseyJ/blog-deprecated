@@ -1,3 +1,20 @@
+---
+title: boj-7576 토마토
+date: 2021/1/31
+description: backjoon online judge 7576
+tag: PS
+author: Aaron
+---
+
+# boj-7576 토마토
+
+https://www.acmicpc.net/problem/7576
+
+## 접근
+1. bfs로 접근하면 되는 문제라고 생각했다. 이때 단순히 bfs원소를 하나씩 빼가며 append하는 방식이 아니라, 원래 큐에 있던 모든 원소를 뺀 뒤 새로운 queue를 다시 만들어주는 방식을 선택했다.
+
+이때 토마토가 모두 익지 못하는 상황(익은 토마토가 아예 없거나, 혹은 1일이 지난 뒤에도 아무런 토마토가 익지 않았지만 아직 토마토가 남은 경우)에는 -1을 출력하는 예외를 잘 핸들링해주면 된다.
+```python
 import sys
 from collections import deque
 
@@ -54,3 +71,5 @@ else:
         print(-1)
     else:
         print(step)
+```
+
