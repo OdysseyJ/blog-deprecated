@@ -57,3 +57,10 @@ https://www.youtube.com/watch?v=SbIQuDKmig0
             max_number = queryset.aggregate(Max("number"))["number__max"]
             queryset.filter(id=instance.id).update(number=max_number + 1)
         ```
+
+## 요약
+ - docker-compose로 개발 환경 설정
+ - CBV (class based view)로 코드 재활용
+ - Test 코드로 검증
+ - Sites, Cache, SearchVector, Admin등의 장고 기본 기능 사용
+
