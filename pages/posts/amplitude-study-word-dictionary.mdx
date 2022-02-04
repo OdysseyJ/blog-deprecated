@@ -25,3 +25,18 @@ import Image from 'next/image'
   것.
 - touchpoint : 제품이나 소비자가 만나는 접점, 보통 앱/웹에서는 click과 impression
 - conversion : 구매를 비롯하여 구매를 촉진시킬 수 있는 고객의 행동 (전환)
+- fingerprint Matching : 가입전 유저와 가입후 유저를 매칭하기 위한 확률적 방법 (디바이스
+  아이디와 기기의 매칭률을 본다. 100% 정확하지는 않음.)
+- STA(Signel Touch Attribute) : Conversion:Touchpoint가 1:1인 경우
+- MTA(Multi Touch Attribute) : Conversion:Touchpoint가 1:N인 경우
+- Lookback Window : Conversion이 발생하기 전 Touchpoint가 Conversion에 대한 기여를 인정
+  받을 수 있는 기간 (쿠팡 광고를 보고 6개월 후에 가입한다면 해당 광고는 기여를 인정하지 않는게 보편적)
+- Attribution Window : In-app Events에 대한 기여를 인정 받을 수 있는 기간.
+- DA : 인터넷 보편 광고 (서비스 인식을 위해)
+- SA : 검색 타겟 광고 (특정 타겟 광고를 위해)
+- Fraud : 사기
+- Fraud Validation : 가짜 유저 검증
+- Click Injection : 앱을 설치 후 최초 실행 전 '가짜' 클릭을 삽입하는 행위
+- Click Spamming : 무작위로 대량의 클릭을 발생시켜 Last Click에 들 가능성을 높이는 Fraud
+- Advertising ID Reset: 봇 등의 자동화 프로그램을 사용하여 특정 액션을 수행하고, 다시
+  광고 ID를 재설정한 뒤 액션을 반복하는 Fraud
