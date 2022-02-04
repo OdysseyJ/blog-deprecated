@@ -1,3 +1,22 @@
+---
+title: boj-16929 Two Dots python
+date: 2022/2/4
+description: backjoon online judge 16929
+tag: PS
+author: Aaron
+---
+
+# boj-16929 Two Dots python
+
+https://www.acmicpc.net/problem/16929
+
+### 시간제한 : 2초
+
+## 접근
+1. dfs로 푼다. 방문 노드에는 자신의 알파벳을 채운다.
+이때 depth가 4 이상이고, 직전에 왔던 길이 아닌 길에 나랑 동일한 알파벳이 나온다면
+사이클이 생긴 것이므로 result=1로 변경해준다.
+```
 import sys
 input = sys.stdin.readline
 
@@ -40,3 +59,4 @@ for i in range(n):
         break
 if not result:
     print("No")
+```
