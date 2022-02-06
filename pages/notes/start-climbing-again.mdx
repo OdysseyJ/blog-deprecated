@@ -6,7 +6,7 @@ tag: Daily
 author: Aaron
 ---
 import Image from 'next/image'
-import { s3ImagePath } from '../constants'
+import { URLS } from '../../constants'
 import ReactPlayer from 'react-player'
 
 # 클라이밍을 다시 시작했다
@@ -15,7 +15,7 @@ import ReactPlayer from 'react-player'
 
 <div>
 <Image
-  src={s3ImagePath+'climbing1.jpg'}
+  src={URLS.S3IMAGE+'climbing1.jpg'}
   alt="Photo"
   width={300}
   height={300}
@@ -23,7 +23,7 @@ import ReactPlayer from 'react-player'
   className="next-image"
 />
 <Image
-  src={s3ImagePath+'climbing2.jpg'}
+  src={URLS.S3IMAGE+'climbing2.jpg'}
   alt="Photo"
   width={300}
   height={300}
