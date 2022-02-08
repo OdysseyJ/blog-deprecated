@@ -1,3 +1,20 @@
+---
+title: boj-1261 알고스팟
+date: 2022/2/8
+description: backjoon online judge 1261
+tag: PS
+author: Aaron
+---
+
+# boj-1261 알고스팟
+
+https://www.acmicpc.net/problem/1261
+
+### 시간제한 : 1초
+
+## 접근
+1. 아이디어는 간단한데, 생각이 안나서 다른사람의 풀이를 참고했다. 벽을 만나면 score를 1씩 더해주는 대신, 큐의 오른쪽에 집어넣어서 나중에 선택되게끔 하고, 빈 방을 만나면 score를 그대로 append하는 대신 왼쪽에 집어넣어서 먼저 선택되게끔 한다.
+```
 import sys
 from collections import deque
 input = sys.stdin.readline
@@ -35,3 +52,4 @@ def bfs():
                     visited[y+j][x+i] = True
 
 bfs()
+```
