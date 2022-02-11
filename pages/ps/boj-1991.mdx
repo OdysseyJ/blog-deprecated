@@ -1,3 +1,20 @@
+---
+title: boj-1991 트리 순회 python
+date: 2022/2/11
+description: backjoon online judge 1991
+tag: PS
+author: Aaron
+---
+
+# boj-1991 트리 순회 python
+
+https://www.acmicpc.net/problem/1991
+
+### 시간제한 : 2초
+
+## 접근
+1. 트리 구현과 함수 3개를 구현해야 한다는 까다로움은 있지만, 솔직히 별로 어렵지 않은 문제
+```
 import sys
 sys.setrecursionlimit(100000)
 input = sys.stdin.readline
@@ -63,3 +80,4 @@ print()
 inorder(nodes["A"])
 print()
 postorder(nodes["A"])
+```
