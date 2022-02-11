@@ -1,3 +1,19 @@
+---
+title: boj-2447 별 찍기 - 10 python
+date: 2022/2/11
+description: backjoon online judge 2447
+tag: PS
+author: Aaron
+---
+
+# boj-2447 별 찍기 - 10 python
+
+### 시간제한 : 1초
+
+## 접근
+1. 이중 배열 생각을 못하고, 처음에는 1차원으로 어떻게든 풀어보려고 하다가 출력 형식을 맞추기가 너무 힘들어서 포기했다.0
+아직 재귀에 익숙하지 않다.
+```
 import sys
 sys.setrecursionlimit(100000)
 
@@ -25,3 +41,5 @@ def solve(x, y, n):
 solve(0, 0, k)
 for i in range(k):
     print("".join(stars[i]))
+```
+
