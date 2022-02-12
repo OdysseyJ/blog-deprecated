@@ -9,6 +9,14 @@
     "start": "next start"
   },
   "dependencies": {
+    "@visx/group": "^2.1.0",
+    "@visx/heatmap": "^2.1.2",
+    "@visx/mock-data": "^2.1.2",
+    "@visx/responsive": "^2.8.0",
+    "@visx/scale": "^2.2.2",
+    "@visx/shape": "^2.4.0",
+    "@visx/text": "^2.3.0",
+    "@visx/wordcloud": "^2.1.0",
     "gray-matter": "^4.0.3",
     "next": "latest",
     "nextra": "2.0.0-alpha.24",
